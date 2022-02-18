@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<button class="btn btn-primary" id="btndownload" onclick="download();">Download</button>
+<button class="btn btn-danger" id="btncancel" onclick="cancel();">Cancel</button>
+
+<script type="text/javascript">
+    var xhr;
+    function download() {
+        xhr = $.ajax({
+            url: "Home/Download",
+            type: "Get",
+            success: function (resp) {
+                window.location.href = "/Home/DownloadFile?filename=" + resp;
+            },
+            error: function () {
+
+            }
+
+        })
+    }
+    function cancel() {
+        xhr.abort();
+        //$.ajax({
+        //    url: "Home/CancelDownload",
+        //    type: "Get",
+        //    success: function () {
+
+        //    },
+        //    error: function () {
+
+        //    }
+
+        //})
+    }
+</script>
